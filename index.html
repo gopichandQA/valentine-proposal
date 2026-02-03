@@ -1,20 +1,19 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Special Question for You ❤️</title>
     <style>
-        /* CSS: Styling the page */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #ffeef2; /* Soft pink background */
+            background-color: #ffeef2;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden; /* Prevents scrollbars when button moves */
+            overflow: hidden;
         }
 
         .container {
@@ -26,10 +25,7 @@
             z-index: 1;
         }
 
-        h1 {
-            color: #d63384;
-            margin-bottom: 20px;
-        }
+        h1 { color: #d63384; margin-bottom: 20px; }
 
         #image-container img {
             width: 200px;
@@ -40,8 +36,10 @@
         .buttons {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            align-items: center;
+            gap: 30px; /* Space between buttons */
             margin-top: 20px;
+            height: 60px; /* Keeps container height stable */
         }
 
         button {
@@ -59,16 +57,20 @@
             color: white;
         }
 
-            #yesBtn:hover {
-                background-color: #ff758f;
-                transform: scale(1.1);
-            }
+        #yesBtn:hover {
+            background-color: #ff758f;
+            transform: scale(1.1);
+        }
 
         #noBtn {
             background-color: #6c757d;
             color: white;
-            position: absolute; /* Allows it to move anywhere */
+            position: absolute; /* Allows movement */
             transition: all 0.1s ease;
+            
+            /* THESE TWO LINES FIX THE OVERLAP ON LOAD */
+            top: 60%; 
+            left: 55%; 
         }
     </style>
 </head>
@@ -88,14 +90,12 @@
     </div>
 
     <script>
-        /* JavaScript: Making the "No" button move */
         const noBtn = document.getElementById('noBtn');
         const question = document.getElementById('question');
         const mainGif = document.getElementById('main-gif');
 
         function moveButton() {
-            // Calculate a random position on the screen
-            // Subtracted 100 to keep the button from going off the edge
+            // Logic remains the same: finds a random spot
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 50);
 
@@ -104,11 +104,9 @@
         }
 
         function celebrate() {
-            // Update the text and image when YES is clicked
             question.innerHTML = "Yay! I'm so happy! ❤️ See you then!";
             mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v0ok8JteARfM4/giphy.gif";
 
-            // Hide the buttons after selection
             document.querySelector('.buttons').style.display = 'none';
         }
     </script>
