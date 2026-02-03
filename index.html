@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Question for You ❤️</title>
+    <title>A Special Question ❤️</title>
     <style>
         body {
             display: flex;
@@ -22,13 +22,22 @@
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            z-index: 1;
+            position: relative;
+            max-width: 400px;
         }
 
-        h1 { color: #d63384; margin-bottom: 20px; }
+        h1 { color: #d63384; margin-bottom: 10px; }
+        
+        /* This adds your custom text */
+        .kannada-text {
+            color: #ff4d6d;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
 
         #image-container img {
-            width: 200px;
+            width: 180px;
             border-radius: 15px;
             margin-bottom: 20px;
         }
@@ -37,9 +46,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 30px; /* Space between buttons */
+            gap: 100px; /* Separates YES and NO buttons initially */
             margin-top: 20px;
-            height: 60px; /* Keeps container height stable */
+            height: 60px;
         }
 
         button {
@@ -49,28 +58,17 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
+            transition: transform 0.2s;
         }
 
-        #yesBtn {
-            background-color: #ff4d6d;
-            color: white;
-        }
-
-        #yesBtn:hover {
-            background-color: #ff758f;
-            transform: scale(1.1);
-        }
+        #yesBtn { background-color: #ff4d6d; color: white; }
 
         #noBtn {
             background-color: #6c757d;
             color: white;
-            position: absolute; /* Allows movement */
+            position: absolute; /* Needed for movement logic */
             transition: all 0.1s ease;
-            
-            /* THESE TWO LINES FIX THE OVERLAP ON LOAD */
-            top: 60%; 
-            left: 55%; 
+            margin-left: 180px; /* Initial distance to prevent overlap */
         }
     </style>
 </head>
@@ -78,9 +76,11 @@
 
     <div class="container">
         <h1 id="question">Will you be my Valentine? ❤️</h1>
+        
+        <p class="kannada-text">Nim'ma naisargika saundarya nanna usirannu taṭṭuttade.</p>
 
         <div id="image-container">
-            <img id="main-gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/579UvO4rW4fW8/giphy.gif" alt="Asking GIF">
+            <img id="main-gif" src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Smiling%20Face%20with%20Hearts.png" alt="Love Emoji">
         </div>
 
         <div class="buttons">
@@ -95,21 +95,20 @@
         const mainGif = document.getElementById('main-gif');
 
         function moveButton() {
-            // Logic remains the same: finds a random spot
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 50);
 
             noBtn.style.left = x + "px";
             noBtn.style.top = y + "px";
+            noBtn.style.marginLeft = "0px"; // Removes initial gap once it starts jumping
         }
 
         function celebrate() {
-            question.innerHTML = "Yay! I'm so happy! ❤️ See you then!";
+            question.innerHTML = "Yay! See you then Gopi! ❤️";
+            document.querySelector('.kannada-text').innerHTML = "I am so happy!";
             mainGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6eXFhNHZ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v0ok8JteARfM4/giphy.gif";
-
             document.querySelector('.buttons').style.display = 'none';
         }
     </script>
-
 </body>
 </html>
